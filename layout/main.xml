@@ -36,7 +36,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/normalMan"
+            android:src="@drawable/normalman"
             ></ImageView>
 
     </LinearLayout>
@@ -57,16 +57,20 @@
             android:layout_weight="1"
             android:layout_margin="20dp"
             android:text="밥 먹기"
+            android:textSize="20dp"
+            android:backgroundTint="#210B61"
             ></Button>
 
         <!-- 운동하기 버튼 -->
         <Button
-            android:id="@+id/workoutBtn"
+            android:id="@+id/exerciseBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:layout_margin="20dp"
             android:text="운동하기"
+            android:textSize="20dp"
+            android:backgroundTint="#210B61"
             ></Button>
 
     </LinearLayout>
