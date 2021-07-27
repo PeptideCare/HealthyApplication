@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="평범한 남자"
@@ -43,32 +44,20 @@
 
     <!-- 버튼 -->
     <LinearLayout
-        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
         android:orientation="horizontal">
 
-        <!-- 밥먹기 버튼 -->
-        <Button
-            android:id="@+id/eatBtn"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="밥 먹기"
-            android:textSize="20dp"
-            android:backgroundTint="#210B61"
-            ></Button>
 
-        <!-- 운동하기 버튼 -->
+        <!-- 시작하기 버튼 -->
         <Button
-            android:id="@+id/exerciseBtn"
+            android:id="@+id/button"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="1"
-            android:layout_margin="20dp"
-            android:text="운동하기"
+            android:layout_margin="40dp"
+            android:text="시작하기"
             android:textSize="20dp"
             android:backgroundTint="#210B61"
             ></Button>

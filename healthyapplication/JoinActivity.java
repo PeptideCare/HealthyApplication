@@ -22,6 +22,7 @@ public class JoinActivity extends AppCompatActivity {
 
         EditText id = (EditText) findViewById(R.id.id);
         EditText pw = (EditText) findViewById(R.id.pw);
+        EditText nickname = (EditText) findViewById(R.id.nickname);
         EditText sex = (EditText) findViewById(R.id.id);
         EditText height = (EditText) findViewById(R.id.height);
         EditText weight = (EditText) findViewById(R.id.weight);

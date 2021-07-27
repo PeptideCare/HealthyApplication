@@ -5,53 +5,71 @@
     android:orientation="vertical"
     android:background="@color/black">
 
+    <!-- 타이틀 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/back">
+        </ImageView>
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="로그인"
+            android:text="기록하기"
             android:textColor="@color/white"
-            android:textSize="30dp"
-            android:layout_marginTop="35dp">
+            android:textSize="30dp">
 
         </TextView>
 
     </LinearLayout>
 
+
+    <!-- 텍스트 입력 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
         android:orientation="vertical">
 
-        <!-- id 값 -->
+        <!-- 분야 스피너 -->
+        <Spinner
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="20dp" />
+
+        <!-- 시간 -->
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="ID"
+            android:hint="시간"
             android:textColorHint="@color/white"
-            android:layout_marginTop="50dp"
+            android:textSize="15dp"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:textColor="@color/white"
+            android:digits="0123456789"
+            android:inputType="number">
         </EditText>
 
-        <!-- pw 값 -->
+        <!-- 상세 내용 -->
         <EditText
-            android:id="@+id/pw"
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="PW"
+            android:hint="내용"
             android:textColorHint="@color/white"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="100dp"
+            android:textSize="15dp"
             android:padding="20dp"
             android:textColor="@color/white">
         </EditText>
@@ -61,30 +79,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="horizontal">
+        android:layout_weight="3">
 
-        <!-- 회원가입 버튼 -->
         <Button
-            android:id="@+id/joinbtn"
-            android:layout_width="0dp"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="회원가입"
+            android:text="완료"
             android:textSize="20dp"
-            android:layout_margin="20dp"
-            android:backgroundTint="#210B61">
-        </Button>
-
-        <!-- 로그인 버튼 -->
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="로그인"
-            android:textSize="20dp"
-            android:layout_margin="20dp"
+            android:layout_margin="40dp"
             android:backgroundTint="#210B61">
         </Button>
 

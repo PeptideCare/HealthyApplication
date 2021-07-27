@@ -22,9 +22,19 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText id = (EditText)findViewById(R.id.id);
         EditText pw = (EditText)findViewById(R.id.pw);
-        Button button = (Button)findViewById(R.id.button);
+        Button joinbtn = (Button)findViewById(R.id.joinbtn);
+        Button loginbtn = (Button)findViewById(R.id.btn);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        joinbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),
+                        JoinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
