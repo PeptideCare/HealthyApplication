@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class Diary {
     @Id
     @GeneratedValue
+    @Column(name = "diary_id")
     private String id;
 
     private LocalDateTime date;

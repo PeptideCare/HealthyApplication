@@ -1,18 +1,20 @@
 package com.healthyapplication.healthyapplication.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Member {
 
     @Id
     @Column(name = "member_id")
     private String id;
 
+    @Column
     private String pw;
     private String nickname;
     private double height;
@@ -23,16 +25,16 @@ public class Member {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    @OneToMany(mappedBy = "title")
+    @OneToMany(mappedBy = "member")
     private List<Title> title;
 
-    @OneToMany(mappedBy = "field")
+    @OneToMany(mappedBy = "member")
     private List<Field> field;
 
-    @OneToMany(mappedBy = "diary")
+    @OneToMany(mappedBy = "member")
     private List<Diary> diary;
 
-    @OneToMany(mappedBy = "community")
+    @OneToMany(mappedBy = "member")
     private List<Community> community;
 
 }

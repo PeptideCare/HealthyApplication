@@ -11,6 +11,7 @@ public class Community {
 
     @Id
     @GeneratedValue
+    @Column(name = "community_id")
     private Long id;
 
     private LocalDateTime date;

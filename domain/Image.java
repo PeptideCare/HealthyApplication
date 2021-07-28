@@ -8,12 +8,13 @@ import javax.persistence.*;
 @Getter
 public class Image {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "image_id")
     private Long id;
 
     private String name;
 
-    @OneToOne(mappedBy = "member")
+    @OneToOne(mappedBy = "image", fetch = FetchType.LAZY)
     private Member member;
 }

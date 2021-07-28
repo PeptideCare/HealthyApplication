@@ -10,6 +10,7 @@ public class Field {
 
     @Id
     @GeneratedValue
+    @Column(name = "field_id")
     private Long id;
 
     private String name;
