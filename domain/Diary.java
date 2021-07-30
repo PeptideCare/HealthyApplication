@@ -9,6 +9,12 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 public class Diary {
+
+    public Diary(LocalDateTime date, String content) {
+        this.date = date;
+        this.content = content;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "diary_id")

@@ -1,12 +1,18 @@
 package com.healthyapplication.healthyapplication.domain;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@RequiredArgsConstructor
 public class Field {
+
+    public Field(String name) {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue

@@ -1,14 +1,24 @@
 package com.healthyapplication.healthyapplication.domain;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@RequiredArgsConstructor
 public class Member {
+
+    public Member(String id, String pw, String nickname, double height, double weight, String sex) {
+        this.id = id;
+        this.pw = pw;
+        this.nickname = nickname;
+        this.height = height;
+        this.weight = weight;
+        this.sex = sex;
+    }
 
     @Id
     @Column(name = "member_id")
@@ -36,5 +46,15 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Community> community;
+
+    // 변경감지 업데이트
+    public void updateMember(Member member) {
+        this.pw = member.getPw();
+        this.nickname = member.getNickname();
+        this.height = member.getHeight();
+        this.weight = member.getWeight();
+        this.sex = member.getSex();
+    }
+
 
 }

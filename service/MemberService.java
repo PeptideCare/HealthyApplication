@@ -2,7 +2,6 @@ package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Image;
 import com.healthyapplication.healthyapplication.domain.Member;
-import com.healthyapplication.healthyapplication.domain.Title;
 import com.healthyapplication.healthyapplication.repository.MemberRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,16 @@ public class MemberService {
     //저장
     @Transactional
     public void join(Member member) {
+        validateMember(member);
         memberRepository.save(member);
+    }
+
+    //중복 회원 방지 메서드
+    public void validateMember(Member member) {
+        Member findMember = findById(member.getId());
+        if (findMember.getId() != null) {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        }
     }
 
     //모든 회원 조회
@@ -29,7 +37,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    //회원 조회
+    //회원 조회(DTO)
     public MemberOne findOne(String id) {
         Member member = memberRepository.findOne(id);
         MemberOne memberOne = new MemberOne();
@@ -40,6 +48,25 @@ public class MemberService {
 
         return memberOne;
     }
+
+    //회원 조회
+    public Member findById(String id) {
+        Member member = memberRepository.findById(id).get();
+        return member;
+    }
+
+    //회원 탈퇴
+    @Transactional
+    public void delete(Member member) {
+        memberRepository.delete(member);
+    }
+
+    //회원 업데이트
+    public void update(Member member) {
+        Member findMember = memberRepository.findById(member.getId()).get();
+        findMember.updateMember(member);
+    }
+
 
     //회원 조회 DTO
     @Data
