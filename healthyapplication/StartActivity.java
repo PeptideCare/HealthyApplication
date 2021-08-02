@@ -30,6 +30,7 @@ public class StartActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        // 뒤로가기 버튼
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +40,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        // 시작하기 버튼
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
