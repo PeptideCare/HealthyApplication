@@ -12,7 +12,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,7 +32,7 @@
 
         <!-- id 값 -->
         <EditText
-            android:id="@+id/id"
+            android:id="@+id/id_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="ID"
@@ -44,7 +43,7 @@
 
         <!-- pw 값 -->
         <EditText
-            android:id="@+id/pw"
+            android:id="@+id/pw_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="PW"
@@ -55,7 +54,7 @@
 
         <!-- 닉네임 값 -->
         <EditText
-            android:id="@+id/nickname"
+            android:id="@+id/nickname_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="닉네임"
@@ -66,7 +65,7 @@
 
         <!-- 성별 값 -->
         <EditText
-            android:id="@+id/sex"
+            android:id="@+id/sex_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="성별"
@@ -77,7 +76,7 @@
 
         <!-- 키 값 -->
         <EditText
-            android:id="@+id/height"
+            android:id="@+id/height_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="키"
@@ -88,7 +87,7 @@
 
         <!-- 몸무게 값 -->
         <EditText
-            android:id="@+id/weight"
+            android:id="@+id/weight_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="몸무게"
@@ -106,7 +105,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_join"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="완료"

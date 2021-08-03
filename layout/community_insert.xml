@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".CommunityInsertActivity"
     android:orientation="vertical"
     android:background="@android:color/holo_green_dark">
 
@@ -17,76 +19,48 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:src="@drawable/back">
-        </ImageView>
+            android:src="@drawable/back"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="기록하기"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="글쓰기"
             android:textColor="@color/white"
-            android:textSize="30dp">
+            android:textSize="25dp">
 
         </TextView>
-
     </LinearLayout>
 
-
-    <!-- 텍스트 입력 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
         android:orientation="vertical">
 
-        <!-- 분야 스피너 -->
-        <Spinner
-        android:id="@+id/item"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:padding="20dp" />
-
-        <!-- 시간 -->
         <EditText
-            android:id="@+id/time"
+            android:id="@+id/content_community_insert"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="시간"
-            android:textColorHint="@color/white"
-            android:textSize="15dp"
-            android:padding="20dp"
-            android:textColor="@color/white"
-            android:digits="0123456789"
-            android:inputType="number">
-        </EditText>
-
-        <!-- 상세 내용 -->
-        <EditText
-            android:id="@+id/content_start"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:hint="내용"
-            android:textColorHint="@color/white"
-            android:textSize="15dp"
-            android:padding="20dp"
-            android:textColor="@color/white">
-        </EditText>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_start"
+            android:id="@+id/btn_community_insert"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="완료"
             android:textSize="20dp"
-            android:textColor="@color/white"
             android:layout_margin="40dp"
             android:backgroundTint="#210B61">
         </Button>
