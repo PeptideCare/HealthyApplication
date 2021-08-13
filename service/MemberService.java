@@ -20,7 +20,7 @@ public class MemberService {
     //저장
     @Transactional
     public void join(Member member) {
-        validateMember(member);
+//        validateMember(member);
         memberRepository.save(member);
     }
 
@@ -37,16 +37,10 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    //회원 조회(DTO)
-    public MemberOne findOne(String id) {
+    //회원 조회(페치조인)
+    public Member findOne(String id) {
         Member member = memberRepository.findOne(id);
-        MemberOne memberOne = new MemberOne();
-        memberOne.setId(member.getId());
-        memberOne.setPw(member.getPw());
-        memberOne.setNickname(member.getNickname());
-        memberOne.setImage(member.getImage());
-
-        return memberOne;
+        return member;
     }
 
     //회원 조회
@@ -66,15 +60,4 @@ public class MemberService {
         Member findMember = memberRepository.findById(member.getId()).get();
         findMember.updateMember(member);
     }
-
-
-    //회원 조회 DTO
-    @Data
-    static class MemberOne {
-        private String id;
-        private String pw;
-        private String nickname;
-        private Image image;
-    }
-
 }

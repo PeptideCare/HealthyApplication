@@ -1,7 +1,9 @@
 package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Diary;
+import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.repository.DiaryRepository;
+import com.healthyapplication.healthyapplication.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,13 +12,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class DiaryService {
 
     private final DiaryRepository diaryRepository;
+    private final MemberRepository memberRepository;
 
     //저장
     @Transactional
-    public void save(Diary diary) {
+    public void save(Diary diary, String memberId) {
+        Member member = memberRepository.findById(memberId).get();
+        diary.setMember(member);
         diaryRepository.save(diary);
     }
 
