@@ -2,6 +2,7 @@ package com.healthyapplication.healthyapplication.apicontroller;
 
 import com.healthyapplication.healthyapplication.domain.Diary;
 import com.healthyapplication.healthyapplication.service.DiaryService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -30,19 +31,12 @@ public class DiaryApiController {
 
     // 조회 DTO
     @Data
+    @AllArgsConstructor
     static class DiaryDto {
         private Long id;
         private LocalDateTime date;
         private String field;
         private String content;
         private int hour;
-
-        public DiaryDto(Long id, LocalDateTime date, String field, String content, int hour) {
-            this.id = id;
-            this.date = date;
-            this.field = field;
-            this.content = content;
-            this.hour = hour;
-        }
     }
 }

@@ -60,11 +60,4 @@ public class Member {
         this.weight = member.getWeight();
         this.sex = member.getSex();
     }
-
-    // 다이어리 작성
-    public void write(Diary diary) {
-        this.diary.add(diary);
-    }
-
-
 }

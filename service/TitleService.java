@@ -1,6 +1,8 @@
 package com.healthyapplication.healthyapplication.service;
 
+import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.domain.Title;
+import com.healthyapplication.healthyapplication.repository.MemberRepository;
 import com.healthyapplication.healthyapplication.repository.TitleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,13 @@ import java.util.List;
 public class TitleService {
 
     private final TitleRepository titleRepository;
+    private final MemberRepository memberRepository;
 
     //저장
     @Transactional
-    public void save(Title title) {
+    public void save(Title title, String id) {
+        Member member = memberRepository.findById(id).get();
+        title.setMember(member);
         titleRepository.save(title);
     }
 

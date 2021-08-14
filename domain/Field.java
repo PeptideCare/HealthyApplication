@@ -20,9 +20,20 @@ public class Field {
     private Long id;
 
     private String name;
+    private int hour;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    //== 시간 추가 ==//
+    public void addTime(int hour) {
+        this.hour = hour;
+    }
+
+    //==연관관계 메서드==//
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
 }
