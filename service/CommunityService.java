@@ -3,7 +3,9 @@ package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Community;
 import com.healthyapplication.healthyapplication.domain.Image;
+import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.repository.CommunityRepository;
+import com.healthyapplication.healthyapplication.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +19,13 @@ import java.util.Optional;
 public class CommunityService {
 
     private final CommunityRepository communityRepository;
+    private final MemberRepository memberRepository;
 
     //저장
     @Transactional
-    public void save(Community community) {
+    public void save(Community community, String member_id) {
+        Member member = memberRepository.findById(member_id).get();
+        community.setMember(member);
         communityRepository.save(community);
     }
 

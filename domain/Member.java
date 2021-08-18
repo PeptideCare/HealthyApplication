@@ -20,11 +20,6 @@ public class Member {
         this.sex = sex;
     }
 
-    public Member createMember() {
-        Member member = new Member("member1", "123", "member1", 120, 80, "남");
-        return member;
-    }
-
     @Id
     @Column(name = "member_id")
     private String id;
@@ -59,5 +54,10 @@ public class Member {
         this.height = member.getHeight();
         this.weight = member.getWeight();
         this.sex = member.getSex();
+    }
+
+    // 이미지 변경
+    public void updateImage(Image image) {
+        this.image = image;
     }
 }

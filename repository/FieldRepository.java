@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface FieldRepository extends JpaRepository<Field, Long> {
 
-    @Query("select d from Field f join fetch f.member m where m.id = :id")
+    @Query("select f from Field f join fetch f.member m where m.id = :id")
     List<Field> findAllById(@Param("id") String id);
 
 }

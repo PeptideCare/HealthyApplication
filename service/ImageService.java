@@ -1,7 +1,9 @@
 package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Image;
+import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.repository.ImageRepository;
+import com.healthyapplication.healthyapplication.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import java.util.List;
 public class ImageService {
 
     private final ImageRepository imageRepository;
+    private final MemberRepository memberRepository;
 
     //저장
     @Transactional
@@ -37,5 +40,11 @@ public class ImageService {
     public List<Image> findAll() {
         List<Image> images = imageRepository.findAll();
         return images;
+    }
+
+    // 회원 이미지 변경
+    public void update (Image image, String id) {
+        Member member = memberRepository.findById(id).get();
+        member.updateImage(image);
     }
 }
