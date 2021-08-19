@@ -2,6 +2,7 @@ package com.healthyapplication.healthyapplication.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -28,12 +29,20 @@ public class Field {
 
     //== 시간 추가 ==//
     public void addTime(int hour) {
-        this.hour = hour;
+        this.hour += hour;
     }
 
     //==연관관계 메서드==//
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 
 }

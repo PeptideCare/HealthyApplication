@@ -18,10 +18,15 @@ public class TitleService {
     private final TitleRepository titleRepository;
     private final MemberRepository memberRepository;
 
-    //저장
+    //등록
     @Transactional
     public void save(Title title, String id) {
         Member member = memberRepository.findById(id).get();
+        for (Title findTitle : member.getTitle()) {
+            if (title.getName().equals(findTitle.getName())) {
+                return;
+            }
+        }
         title.setMember(member);
         titleRepository.save(title);
     }

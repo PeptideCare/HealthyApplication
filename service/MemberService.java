@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class MemberService {
 
     //중복 회원 방지 메서드
     public void validateMember(Member member) {
-        Member findMember = findById(member.getId());
+        Member findMember = findById(member.getId()).get();
         if (findMember.getId() != null) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
@@ -44,8 +45,8 @@ public class MemberService {
     }
 
     //회원 조회
-    public Member findById(String id) {
-        Member member = memberRepository.findById(id).get();
+    public Optional<Member> findById(String id) {
+        Optional<Member> member = memberRepository.findById(id);
         return member;
     }
 

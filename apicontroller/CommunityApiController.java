@@ -22,6 +22,7 @@ public class CommunityApiController {
     //글쓰기
     @PostMapping("/api/community/{member_id}/insert")
     public void insert (@RequestBody Community community, @PathVariable String member_id) {
+        community.setDate(LocalDateTime.now());
         communityService.save(community, member_id);
     }
 
@@ -29,11 +30,12 @@ public class CommunityApiController {
     @GetMapping("/api/community/find")
     public Result find() {
         List<Community> all = communityService.findAll();
-        ArrayList<Community> list = new ArrayList<>();
+        ArrayList<ComDto> list = new ArrayList<>();
         for (Community community : all) {
             TitleDto titleDto = new TitleDto(community.getMember().getTitle());
             MemberDto memberDto = new MemberDto(community.getMember().getNickname(), community.getMember().getImage(), titleDto);
             ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
+            list.add(comDto);
         }
         return new Result(list);
     }
@@ -79,6 +81,6 @@ public class CommunityApiController {
     @Data
     @AllArgsConstructor
     static class Result<T> {
-        private List<ComDto> comDtos;
+        private List<ComDto> data;
     }
 }

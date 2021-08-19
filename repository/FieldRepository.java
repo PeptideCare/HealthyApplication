@@ -12,4 +12,6 @@ public interface FieldRepository extends JpaRepository<Field, Long> {
     @Query("select f from Field f join fetch f.member m where m.id = :id")
     List<Field> findAllById(@Param("id") String id);
 
+    @Query("select f from Field f join fetch f.member m where m.id = :id and f.name = :name")
+    Field findByFieldName(@Param("id") String id, @Param("name") String name);
 }

@@ -28,4 +28,8 @@ public class Title {
     public void setMember(Member member) {
         this.member = member;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

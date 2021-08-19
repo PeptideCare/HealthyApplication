@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,12 +22,14 @@ public class FieldService {
     //저장
     @Transactional
     public void save(Field field, String id) {
-        Field findField = fieldRepository.findById(field.getId()).get();
+        Field findField = fieldRepository.findByFieldName(id, field.getName());
+
         if (findField != null){
             findField.addTime(field.getHour());
         } else {
-            Member member = memberRepository.findById(id).get();
-            field.setMember(member);
+            Optional<Member> findMember = memberRepository.findById(id);
+            if (findMember.isEmpty()) return;
+            field.setMember(findMember.get());
             fieldRepository.save(field);
         }
     }

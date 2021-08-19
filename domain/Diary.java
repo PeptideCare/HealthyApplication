@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -17,7 +18,7 @@ public class Diary {
     @Column(name = "diary_id")
     private Long id;
 
-    private LocalDateTime date;
+    private LocalDate date;
     private String content;
     private String field;
     private int hour;
@@ -29,5 +30,9 @@ public class Diary {
     //==연관관계 메서드==//
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

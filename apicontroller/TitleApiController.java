@@ -16,9 +16,18 @@ public class TitleApiController {
 
     private final TitleService titleService;
 
-    // 저장
+    // 칭호 등록
     @PostMapping("/api/title/{member_id}/insert")
     public void save(@RequestBody Title title, @PathVariable String member_id){
+        titleService.save(title, member_id);
+    }
+
+    // 칭호 할당
+    @PostMapping("/api/title/{member_id}/{title_id}/insert")
+    public void insert(@PathVariable String member_id, @PathVariable Long title_id){
+        Title one = titleService.findOne(title_id);
+        Title title = new Title();
+        title.setName(one.getName());
         titleService.save(title, member_id);
     }
 

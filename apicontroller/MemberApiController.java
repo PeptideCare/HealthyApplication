@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +20,7 @@ public class MemberApiController {
     private final MemberService memberService;
 
     // 회원가입
-    @PostMapping("/api/member/new")
+    @PostMapping("/api/member/insert")
     public void join(@RequestBody Member member) {
         memberService.join(member);
     }
@@ -27,11 +28,18 @@ public class MemberApiController {
     // 로그인
     @PostMapping("/api/member/login")
     public String login(@RequestBody Member member) {
-        Member findMember = memberService.findById(member.getId());
-        if (findMember == null) {
+        Optional<Member> findMember = memberService.findById(member.getId());
+        if (findMember.isEmpty()) {
+            // 없는 회원
             return "0";
         } else {
-            return findMember.getId();
+            // 로그인 성공
+            if (findMember.get().getPw().equals(member.getPw())) {
+                return findMember.get().getId();
+                // 로그인 실패
+            } else {
+                return "0";
+            }
         }
     }
 
@@ -54,7 +62,7 @@ public class MemberApiController {
     // 아이디로 회원 조회
     @GetMapping("/api/member/{id}/find")
     public MemberDto findOne(@PathVariable String id) {
-        Member member = memberService.findOne(id);
+        Member member = memberService.findById(id).get();
         MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                 member.getNickname(), member.getHeight(), member.getWeight(),
                 member.getSex(), member.getImage(), member.getTitle());
@@ -65,7 +73,7 @@ public class MemberApiController {
     @Data
     @AllArgsConstructor
     static class Result<T> {
-        private List<MemberDto> memberDto;
+        private List<MemberDto> member;
     }
 
     //회원 DTO

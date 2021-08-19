@@ -42,4 +42,9 @@ public class Community {
         this.member = member;
     }
 
+    // 시간 설정
+    public void setDate (LocalDateTime time) {
+        this.date = time;
+    }
+
 }

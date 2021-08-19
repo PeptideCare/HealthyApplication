@@ -17,9 +17,19 @@ public class FieldApiController {
 
     private final FieldService fieldService;
 
-    // 저장(회원)
+    // 등록
     @PostMapping("/api/field/{member_id}/insert")
-    public void insert(@RequestBody Field field, @PathVariable String member_id) {
+    public void save (@RequestBody Field field, @PathVariable String member_id) {
+        fieldService.save(field, member_id);
+    }
+
+    // 할당
+    @PostMapping("/api/field/{member_id}/{field_id}/insert")
+    public void insert(@PathVariable String member_id, @PathVariable Long field_id) {
+        Field findField = fieldService.findOne(field_id);
+        Field field = new Field();
+        field.setName(findField.getName());
+        field.setHour(findField.getHour());
         fieldService.save(field, member_id);
     }
 

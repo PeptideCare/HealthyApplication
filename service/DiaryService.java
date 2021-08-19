@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -44,5 +45,10 @@ public class DiaryService {
         return diaries;
     }
 
+    //날짜별 조회
+    public List<Diary> findByDate(String id, LocalDate date) {
+        List<Diary> diaries = diaryRepository.findByDate(id, date);
+        return diaries;
+    }
 
 }

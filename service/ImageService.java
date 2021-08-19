@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,8 +44,12 @@ public class ImageService {
     }
 
     // 회원 이미지 변경
-    public void update (Image image, String id) {
-        Member member = memberRepository.findById(id).get();
-        member.updateImage(image);
+    @Transactional
+    public void update (Long image_id, String member_id) {
+        Member member = memberRepository.findById(member_id).get();
+        Optional<Image> image = imageRepository.findById(image_id);
+        if (!image.isEmpty()) {
+            member.updateImage(image.get());
+        }
     }
 }

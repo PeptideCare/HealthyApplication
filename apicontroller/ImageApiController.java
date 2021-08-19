@@ -18,9 +18,9 @@ public class ImageApiController {
     }
 
     // 회원에 저장
-    @PostMapping("/api/image/{member_id}/save")
-    public void save(@RequestBody Image image, @PathVariable String member_id){
-        imageService.update(image, member_id);
+    @PostMapping("/api/image/{member_id}/{image_id}/insert")
+    public void save(@PathVariable Long image_id, @PathVariable String member_id){
+        imageService.update(image_id, member_id);
     }
 
 
