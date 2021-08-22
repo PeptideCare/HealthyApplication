@@ -20,16 +20,19 @@ public class MemberService {
 
     //저장
     @Transactional
-    public void join(Member member) {
-//        validateMember(member);
-        memberRepository.save(member);
+    public String join(Member member) {
+        return validateMember(member);
     }
 
     //중복 회원 방지 메서드
-    public void validateMember(Member member) {
-        Member findMember = findById(member.getId()).get();
-        if (findMember.getId() != null) {
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+    public String validateMember(Member member) {
+        Optional<Member> findMember = findById(member.getId());
+        if (findMember.isPresent()) {
+            return "0";
+        }
+        else {
+            Member savedMember = memberRepository.save(member);
+            return savedMember.getId();
         }
     }
 

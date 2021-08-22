@@ -22,9 +22,9 @@ public class StartActivity extends AppCompatActivity {
         actionBar.hide();
 
         ImageView back = (ImageView)findViewById(R.id.back);
-        EditText content = (EditText)findViewById(R.id.content);
+        EditText content = (EditText)findViewById(R.id.content_start);
         Spinner spinner = (Spinner)findViewById(R.id.item);
-        Button button = (Button)findViewById(R.id.button);
+        Button button = (Button)findViewById(R.id.btn_start);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.item, R.layout.spinner);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);

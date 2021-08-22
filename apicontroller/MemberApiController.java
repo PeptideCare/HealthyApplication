@@ -21,8 +21,8 @@ public class MemberApiController {
 
     // 회원가입
     @PostMapping("/api/member/insert")
-    public void join(@RequestBody Member member) {
-        memberService.join(member);
+    public String join(@RequestBody Member member) {
+        return memberService.join(member);
     }
 
     // 로그인

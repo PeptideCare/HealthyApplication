@@ -1,45 +1,44 @@
 package com.healthy.healthyapplication;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
-public class LoginActivity extends AppCompatActivity {
+public class CommunityInsertActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.community_insert);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        EditText id = (EditText)findViewById(R.id.id_login);
-        EditText pw = (EditText)findViewById(R.id.pw_login);
-        Button joinbtn = (Button)findViewById(R.id.joinbtn_login);
-        Button loginbtn = (Button)findViewById(R.id.loginbtn_login);
+        EditText content = (EditText)findViewById(R.id.content_community_insert);
+        Button btn = (Button)findViewById(R.id.btn_community_insert);
+        ImageView back = (ImageView) findViewById(R.id.back);
 
-        joinbtn.setOnClickListener(new View.OnClickListener() {
+        // 완료 버튼
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
-                        JoinActivity.class);
+                        CommunityActivity.class);
                 startActivity(intent);
             }
         });
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        // 뒤로가기
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
-                        MainActivity.class);
+                        CommunityActivity.class);
                 startActivity(intent);
             }
         });

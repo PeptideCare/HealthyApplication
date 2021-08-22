@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,13 +17,36 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        Button btn = (Button)findViewById(R.id.button);
+        ImageView list = (ImageView)findViewById(R.id.list_main);
+        ImageView start = (ImageView)findViewById(R.id.start_main);
+        ImageView calendar = (ImageView)findViewById(R.id.calendar_main);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        // 게시판 이동
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),
+                        CommunityActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 기록하기 이동
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         StartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 캘린더 이동
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),
+                        DiaryActivity.class);
                 startActivity(intent);
             }
         });
