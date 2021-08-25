@@ -17,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // 멤버 아이디
+        Intent intent = getIntent();
+        String memberId = intent.getStringExtra("memberId");
+        System.out.println("main" + memberId);
+
         ImageView list = (ImageView)findViewById(R.id.list_main);
         ImageView start = (ImageView)findViewById(R.id.start_main);
         ImageView calendar = (ImageView)findViewById(R.id.calendar_main);
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         CommunityActivity.class);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
             }
         });
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         StartActivity.class);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
             }
         });
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         DiaryActivity.class);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
             }
         });

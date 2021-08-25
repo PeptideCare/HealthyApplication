@@ -31,6 +31,10 @@ public class CommunityActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // 멤버 아이디
+        Intent intent = getIntent();
+        String memberId = intent.getStringExtra("memberId");
+
         FloatingActionButton insert = (FloatingActionButton)findViewById(R.id.insert);
         ListView list = (ListView)findViewById(R.id.list_community);
         ImageView back = (ImageView)findViewById(R.id.back);
@@ -44,6 +48,7 @@ public class CommunityActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         CommunityInsertActivity.class);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
             }
         });

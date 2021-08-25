@@ -1,5 +1,6 @@
 package com.healthy.healthyapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,7 @@ import java.net.URL;
 
 public class JoinActivity extends AppCompatActivity{
 
+    @NonNull
     EditText id;
     EditText pw;
     EditText nickname;
@@ -50,7 +52,7 @@ public class JoinActivity extends AppCompatActivity{
         id = (EditText) findViewById(R.id.id_join);
         pw = (EditText) findViewById(R.id.pw_join);
         nickname = (EditText) findViewById(R.id.nickname_join);
-        sex = (EditText) findViewById(R.id.id_join);
+        sex = (EditText) findViewById(R.id.sex_join);
         height = (EditText) findViewById(R.id.height_join);
         weight = (EditText) findViewById(R.id.weight_join);
         button = (Button) findViewById(R.id.btn_join);
