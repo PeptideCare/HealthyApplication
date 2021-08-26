@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(),
                             MainActivity.class);
-                    System.out.println("findmemberId" + id);
                     intent.putExtra("memberId", id.getText().toString());
                     startActivity(intent);
                 }

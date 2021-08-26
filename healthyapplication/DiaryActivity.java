@@ -44,7 +44,6 @@ public class DiaryActivity extends AppCompatActivity {
         // 멤버 아이디
         Intent intent = getIntent();
         String memberId = intent.getStringExtra("memberId");
-        System.out.println("diary" + memberId);
 
         // 토스트 중복 방지
         sToast = Toast.makeText(this, "null", Toast.LENGTH_SHORT);

@@ -25,6 +25,7 @@ import java.net.URL;
 
 public class CommunityInsertActivity extends AppCompatActivity {
 
+    EditText title;
     EditText content;
     Button btn;
     ImageView back;
@@ -40,6 +41,7 @@ public class CommunityInsertActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String memberId = intent.getStringExtra("memberId");
 
+        title = (EditText)findViewById(R.id.title_community_insert);
         content = (EditText)findViewById(R.id.content_community_insert);
         btn = (Button)findViewById(R.id.btn_community_insert);
         back = (ImageView) findViewById(R.id.back);
@@ -49,7 +51,7 @@ public class CommunityInsertActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                new CommunityInsertActivity.JSONTask().execute("http://192.168.35.53:8080/api/communcity/"+memberId+"/insert");
+                new CommunityInsertActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/"+memberId+"/insert");
 
                 Intent intent = new Intent(getApplicationContext(),
                         CommunityActivity.class);
@@ -73,11 +75,13 @@ public class CommunityInsertActivity extends AppCompatActivity {
     public class JSONTask extends AsyncTask<String, String, String> {
 
         String comContent = content.getText().toString();
+        String comTitle = title.getText().toString();
 
         @Override
         protected String doInBackground(String... strings) {
             try {
                 JSONObject jsonObject = new JSONObject();
+                jsonObject.accumulate("title", comTitle);
                 jsonObject.accumulate("content", comContent);
 
                 HttpURLConnection con = null;

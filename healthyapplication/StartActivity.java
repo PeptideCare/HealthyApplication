@@ -49,7 +49,6 @@ public class StartActivity extends AppCompatActivity {
         // 멤버 아이디
         Intent intent = getIntent();
         String memberId = intent.getStringExtra("memberId");
-        System.out.println("start" + memberId);
 
         back = (ImageView)findViewById(R.id.back);
         content = (EditText)findViewById(R.id.content_start);

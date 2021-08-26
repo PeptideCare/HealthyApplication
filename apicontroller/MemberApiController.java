@@ -51,9 +51,12 @@ public class MemberApiController {
         List<MemberDto> list = new ArrayList<>();
 
         for (Member member : members) {
+            Image image = member.getImage();
+            ImageDto imageDto = new ImageDto(image.getId(), image.getName());
+
             MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                     member.getNickname(), member.getHeight(), member.getWeight(),
-                    member.getSex(), member.getImage(), member.getTitle());
+                    member.getSex(), imageDto, member.getTitle());
             list.add(memberDto);
         }
 
@@ -64,9 +67,12 @@ public class MemberApiController {
     @GetMapping("/api/member/{id}/find")
     public MemberDto findOne(@PathVariable String id) {
         Member member = memberService.findById(id).get();
+        Image image = member.getImage();
+        ImageDto imageDto = new ImageDto(image.getId(), image.getName());
+
         MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                 member.getNickname(), member.getHeight(), member.getWeight(),
-                member.getSex(), member.getImage(), member.getTitle());
+                member.getSex(), imageDto, member.getTitle());
         return memberDto;
     }
 
@@ -79,6 +85,7 @@ public class MemberApiController {
 
     //회원 DTO
     @Data
+    @AllArgsConstructor
     static class MemberDto {
         private String id;
         private String pw;
@@ -86,19 +93,16 @@ public class MemberApiController {
         private double height;
         private double weight;
         private String sex;
-        private Image image;
+        private ImageDto image;
         private List<Title> title;
+    }
 
-        public MemberDto(String id, String pw, String nickname, double height, double weight, String sex, Image image, List<Title> title) {
-            this.id = id;
-            this.pw = pw;
-            this.nickname = nickname;
-            this.height = height;
-            this.weight = weight;
-            this.sex = sex;
-            this.image = image;
-            this.title = title;
-        }
+    // 이미지 DTO
+    @Data
+    @AllArgsConstructor
+    static class ImageDto {
+        private Long id;
+        private String name;
     }
 
 }

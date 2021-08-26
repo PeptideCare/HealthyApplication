@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,16 @@ import android.widget.SimpleAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +35,19 @@ public class CommunityActivity extends AppCompatActivity {
     //커뮤니티 글쓴이
     ArrayList<String> author = new ArrayList<>();
 
+    // 커뮤니티 게시판 id
+    Long communityId;
+
+    // 회원 아이디
+    String memberId;
+
+    FloatingActionButton insert;
+    ListView list;
+    ImageView back;
+
+    // 리스트뷰 처리
+    ArrayList<HashMap<String, String>> arr = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +57,20 @@ public class CommunityActivity extends AppCompatActivity {
 
         // 멤버 아이디
         Intent intent = getIntent();
-        String memberId = intent.getStringExtra("memberId");
+        memberId = intent.getStringExtra("memberId");
 
-        FloatingActionButton insert = (FloatingActionButton)findViewById(R.id.insert);
-        ListView list = (ListView)findViewById(R.id.list_community);
-        ImageView back = (ImageView)findViewById(R.id.back);
+        insert = (FloatingActionButton)findViewById(R.id.insert);
+        list = (ListView)findViewById(R.id.list_community);
+        back = (ImageView)findViewById(R.id.back);
 
-        title.add("아아");
-        author.add("홍길동");
+        // 통신 처리
+        new CommunityActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/find");
+
+        // 리스트뷰 처리
+        String [] keys = {"title", "author"};
+        int [] ids = {android.R.id.text1, android.R.id.text2};
+        SimpleAdapter adapter = new SimpleAdapter(this, arr, android.R.layout.simple_list_item_2, keys, ids);
+        list.setAdapter(adapter);
 
         // 글쓰기 버튼
         insert.setOnClickListener(new View.OnClickListener() {
@@ -53,42 +83,108 @@ public class CommunityActivity extends AppCompatActivity {
             }
         });
 
-
-        // 리스트뷰 처리
-        ArrayList<HashMap<String, String>> data = new ArrayList<>();
-
-        for (int i=0; i<title.size(); i++) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("title", title.get(i));
-            map.put("author", author.get(i));
-
-            data.add(map);
-        }
-
-        String [] keys = {"title", "author"};
-        int [] ids = {android.R.id.text1, android.R.id.text2};
-
-        SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, keys, ids);
-        list.setAdapter(adapter);
-
         // 뒤로가기
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),
                         MainActivity.class);
+                intent.putExtra("memberId", memberId);
                 startActivity(intent);
             }
         });
+
+
+
     }
 
-    //리스트뷰 클릭 메서드
-    class ListListener implements AdapterView.OnItemClickListener{
+    public class JSONTask extends AsyncTask<String, String, String> {
 
         @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        protected String doInBackground(String... strings) {
+            try {
+
+                HttpURLConnection con = null;
+                BufferedReader reader = null;
+
+                try {
+                    URL url = new URL(strings[0]);
+
+                    InputStream ip = url.openStream();
+                    reader = new BufferedReader(new InputStreamReader(ip));
+                    StringBuffer buffer = new StringBuffer();
+                    String line = "";
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line);
+                    }
+
+                    String data = buffer.toString();
+
+                    JSONObject jsonObject = new JSONObject(data);
+                    JSONArray jsonArray = jsonObject.getJSONArray("community");
+
+                    // json 추출
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+
+                        String findTitle = obj.getString("title");
+                        communityId = obj.getLong("id");
+
+                        JSONObject memberObj = obj.getJSONObject("member");
+                        String findNick = memberObj.getString("nickname");
+
+                        title.add(findTitle);
+                        author.add(findNick);
+                    }
+
+                    // 리스트뷰 처리
+                    for (int i=0; i<title.size(); i++) {
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("title", title.get(i));
+                        map.put("author", author.get(i));
+
+                        arr.add(map);
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (con != null) {
+                        con.disconnect();
+                    }
+                    try {
+                        if (reader != null) {
+                            reader.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onCancelled() {
 
         }
     }
 
+    //리스트뷰 클릭 메서드
+    class ListListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Intent intent = new Intent(getApplicationContext(),
+                    CommunityItemActivity.class);
+            intent.putExtra("memberId", memberId);
+            intent.putExtra("communityId", communityId);
+            startActivity(intent);
+        }
+    }
 }

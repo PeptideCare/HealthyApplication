@@ -81,6 +81,6 @@ public class CommunityApiController {
     @Data
     @AllArgsConstructor
     static class Result<T> {
-        private List<ComDto> data;
+        private List<ComDto> community;
     }
 }
