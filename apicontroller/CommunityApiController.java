@@ -31,9 +31,19 @@ public class CommunityApiController {
     public Result find() {
         List<Community> all = communityService.findAll();
         ArrayList<ComDto> list = new ArrayList<>();
+        ArrayList<TitleDto> titleDtos = new ArrayList<>();
+
         for (Community community : all) {
-            TitleDto titleDto = new TitleDto(community.getMember().getTitle());
-            MemberDto memberDto = new MemberDto(community.getMember().getNickname(), community.getMember().getImage(), titleDto);
+
+            List<Title> title = community.getMember().getTitle();
+            for (Title title1 : title) {
+                TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
+                titleDtos.add(titleDto);
+            }
+
+            ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
+
+            MemberDto memberDto = new MemberDto(community.getMember().getNickname(), imageDto, titleDtos);
             ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
             list.add(comDto);
         }
@@ -44,8 +54,17 @@ public class CommunityApiController {
     @GetMapping("/api/community/{id}/find")
     public ComDto findOne(@PathVariable Long id) {
         Community community = communityService.findOne(id);
-        TitleDto titleDto = new TitleDto(community.getMember().getTitle());
-        MemberDto memberDto = new MemberDto(community.getMember().getNickname(), community.getMember().getImage(), titleDto);
+        List<TitleDto> titleDtos = new ArrayList<>();
+
+        List<Title> title = community.getMember().getTitle();
+        for (Title title1 : title) {
+            TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
+            titleDtos.add(titleDto);
+        }
+
+        ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
+
+        MemberDto memberDto = new MemberDto(community.getMember().getNickname(), imageDto, titleDtos);
         ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
 
         return comDto;
@@ -67,15 +86,24 @@ public class CommunityApiController {
     @AllArgsConstructor
     static class MemberDto {
         private String nickname;
-        private Image image;
-        private TitleDto titleDto;
+        private ImageDto image;
+        private List<TitleDto> titles;
+    }
+
+    // 이미지 dto
+    @Data
+    @AllArgsConstructor
+    static class ImageDto {
+        private Long id;
+        private String name;
     }
 
     // 칭호 dto
     @Data
     @AllArgsConstructor
     static class TitleDto{
-        private List<Title> titles;
+        private Long id;
+        private String name;
     }
 
     @Data

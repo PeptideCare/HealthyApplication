@@ -1,6 +1,7 @@
 package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Diary;
+import com.healthyapplication.healthyapplication.domain.Field;
 import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.repository.DiaryRepository;
 import com.healthyapplication.healthyapplication.repository.MemberRepository;
@@ -18,11 +19,19 @@ public class DiaryService {
 
     private final DiaryRepository diaryRepository;
     private final MemberRepository memberRepository;
+    private final FieldService fieldService;
 
     //저장
     @Transactional
     public void save(Diary diary, String memberId) {
         Member member = memberRepository.findById(memberId).get();
+
+        // 자기관리 분야 저장
+        Field field = new Field();
+        field.setName(diary.getField());
+        field.setHour(diary.getHour());
+        fieldService.save(field, memberId);
+
         diary.setMember(member);
         diaryRepository.save(diary);
     }

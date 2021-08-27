@@ -49,14 +49,21 @@ public class MemberApiController {
     public Result find() {
         List<Member> members = memberService.findAll();
         List<MemberDto> list = new ArrayList<>();
+        List<TitleDto> titleDtos = new ArrayList<>();
 
         for (Member member : members) {
+            List<Title> title = member.getTitle();
+            for (Title title1 : title) {
+                TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
+                titleDtos.add(titleDto);
+            }
+
             Image image = member.getImage();
             ImageDto imageDto = new ImageDto(image.getId(), image.getName());
 
             MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                     member.getNickname(), member.getHeight(), member.getWeight(),
-                    member.getSex(), imageDto, member.getTitle());
+                    member.getSex(), imageDto, titleDtos);
             list.add(memberDto);
         }
 
@@ -67,12 +74,20 @@ public class MemberApiController {
     @GetMapping("/api/member/{id}/find")
     public MemberDto findOne(@PathVariable String id) {
         Member member = memberService.findById(id).get();
+        List<TitleDto> titleDtos = new ArrayList<>();
+
+        List<Title> title = member.getTitle();
+        for (Title title1 : title) {
+            TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
+            titleDtos.add(titleDto);
+        }
+
         Image image = member.getImage();
         ImageDto imageDto = new ImageDto(image.getId(), image.getName());
 
         MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                 member.getNickname(), member.getHeight(), member.getWeight(),
-                member.getSex(), imageDto, member.getTitle());
+                member.getSex(), imageDto, titleDtos);
         return memberDto;
     }
 
@@ -94,7 +109,15 @@ public class MemberApiController {
         private double weight;
         private String sex;
         private ImageDto image;
-        private List<Title> title;
+        private List<TitleDto> title;
+    }
+
+    // 칭호 dto
+    @Data
+    @AllArgsConstructor
+    static class TitleDto{
+        private Long id;
+        private String name;
     }
 
     // 이미지 DTO
