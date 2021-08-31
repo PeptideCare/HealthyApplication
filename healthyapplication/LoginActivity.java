@@ -123,17 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     while ((line = reader.readLine()) != null) {
                         buffer.append(line);
                     }
-
-//                    String data = buffer.toString();
                     findMemberId = buffer.toString();
-
-//                    JSONArray root = new JSONArray(data);
-//
-//                    for (int i=0; i<root.length(); i++) {
-//                        JSONObject obj = root.getJSONObject(i);
-//
-//                        savedMemberId = obj.getString("id");
-//                    }
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

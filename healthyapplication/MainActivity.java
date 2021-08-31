@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     // 로직 처리 변수
     Long imgId;
     String imgName;
+    Long titleId;
+    String titleName = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,24 +124,28 @@ public class MainActivity extends AppCompatActivity {
 
                         // 이미지 객체 추출
                         JSONObject imgObj = jsonObject.getJSONObject("image");
-                        Long imgId = imgObj.getLong("id");
-                        String imgName = imgObj.getString("name");
+                        imgId = imgObj.getLong("id");
+                        imgName = imgObj.getString("name");
 
                         // 칭호 객체 추출
 
-                        Long titleId;
-                        String titleName = "";
-
                         JSONArray titleArr = jsonObject.getJSONArray("title");
                         for (int j = 0; j < titleArr.length(); j++) {
-                            JSONObject obj = titleArr.getJSONObject(i);
+                            JSONObject obj = titleArr.getJSONObject(j);
                             titleId = obj.getLong("id");
                             titleName = obj.getString("name");
                         }
 
-                        name.setText(imgName);
-                        title.setText(titleName);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                name.setText(imgName);
+                                title.setText(titleName);
 //                        img.setImageResource(R.drawable.);
+                            }
+                        });
+
+
 
                         if (imgName == null) {
                             name.setText("");

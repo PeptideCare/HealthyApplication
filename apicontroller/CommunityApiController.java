@@ -31,11 +31,12 @@ public class CommunityApiController {
     public Result find() {
         List<Community> all = communityService.findAll();
         ArrayList<ComDto> list = new ArrayList<>();
-        ArrayList<TitleDto> titleDtos = new ArrayList<>();
 
         for (Community community : all) {
 
+            ArrayList<TitleDto> titleDtos = new ArrayList<>();
             List<Title> title = community.getMember().getTitle();
+
             for (Title title1 : title) {
                 TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
                 titleDtos.add(titleDto);
@@ -45,6 +46,7 @@ public class CommunityApiController {
 
             MemberDto memberDto = new MemberDto(community.getMember().getNickname(), imageDto, titleDtos);
             ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
+
             list.add(comDto);
         }
         return new Result(list);

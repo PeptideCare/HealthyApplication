@@ -107,11 +107,16 @@ public class DiaryActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(data);
                     JSONArray jsonArray = jsonObject.getJSONArray("diary");
 
-                    if (jsonArray.length() == 0) {
-                        field.setText("");
-                        content.setText("");
-                        hour.setText("");
-                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (jsonArray.length() == 0) {
+                                field.setText("");
+                                content.setText("");
+                                hour.setText("");
+                            }
+                        }
+                    });
 
                     for (int i=0; i<jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
@@ -121,9 +126,14 @@ public class DiaryActivity extends AppCompatActivity {
                         String findContent = obj.getString("content");
                         int findHour = obj.getInt("hour");
 
-                        field.setText(findField);
-                        content.setText(findContent);
-                        hour.setText(findHour + "시간");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                field.setText(findField);
+                                content.setText(findContent);
+                                hour.setText(findHour + "시간");
+                            }
+                        });
                     }
 
                 } catch (MalformedURLException e) {

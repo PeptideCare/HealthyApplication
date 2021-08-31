@@ -67,10 +67,17 @@ public class CommunityActivity extends AppCompatActivity {
         new CommunityActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/find");
 
         // 리스트뷰 처리
+
         String [] keys = {"title", "author"};
         int [] ids = {android.R.id.text1, android.R.id.text2};
         SimpleAdapter adapter = new SimpleAdapter(this, arr, android.R.layout.simple_list_item_2, keys, ids);
-        list.setAdapter(adapter);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                list.setAdapter(adapter);
+            }
+        });
 
         // 글쓰기 버튼
         insert.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +100,6 @@ public class CommunityActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
     }
 
