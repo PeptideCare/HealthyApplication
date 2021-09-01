@@ -72,7 +72,7 @@ public class DiaryActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
                 String day;
-                day = year + "-" + String.format("%02d",(month+1)) + "-" + dayofMonth;
+                day = year + "-" + String.format("%02d",(month+1)) + "-" + String.format("%02d",(dayofMonth));
 
                 // 통신 처리
                 new DiaryActivity.JSONTask().execute("http://192.168.35.53:8080/api/diary/"+memberId+"/"+day+"/find");

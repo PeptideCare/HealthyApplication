@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_dark">
+    android:background="#F2F2F2">
 
     <!-- 타이틀 -->
     <LinearLayout
@@ -25,9 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
             android:text="캘린더"
-            android:textColor="@color/white"
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black"
             android:textSize="25dp">
 
         </TextView>
@@ -53,7 +53,8 @@
             android:text="                                                                       "
             android:textSize="15dp"
             android:layout_gravity="center"
-            android:textColor="@color/white" />
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_hour"
@@ -62,7 +63,8 @@
             android:text="                                                                       "
             android:textSize="15dp"
             android:layout_gravity="center"
-            android:textColor="@color/white" />
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/text_content"
@@ -71,7 +73,8 @@
             android:text="                                                                       "
             android:textSize="15dp"
             android:layout_gravity="center"
-            android:textColor="@color/white" />
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black" />
 
 
 

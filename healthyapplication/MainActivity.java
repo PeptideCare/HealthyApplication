@@ -124,8 +124,13 @@ public class MainActivity extends AppCompatActivity {
 
                         // 이미지 객체 추출
                         JSONObject imgObj = jsonObject.getJSONObject("image");
-                        imgId = imgObj.getLong("id");
-                        imgName = imgObj.getString("name");
+                        if (imgObj.getLong("id") != 0) {
+                            imgId = imgObj.getLong("id");
+                            imgName = imgObj.getString("name");
+                        } else {
+                            imgId = Long.valueOf(0);
+                            imgName = "0";
+                        }
 
                         // 칭호 객체 추출
 
@@ -142,17 +147,14 @@ public class MainActivity extends AppCompatActivity {
                                 name.setText(imgName);
                                 title.setText(titleName);
 //                        img.setImageResource(R.drawable.);
+                                if (imgName.equals("0")) {
+                                    name.setText("");
+                                }
+                                if (titleName == null) {
+                                    title.setText("");
+                                }
                             }
                         });
-
-
-
-                        if (imgName == null) {
-                            name.setText("");
-                        }
-                        if (titleName == null) {
-                            title.setText("");
-                        }
                     }
 
                 } catch (MalformedURLException e) {

@@ -55,6 +55,9 @@ public class CommunityActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // 통신 처리
+        new CommunityActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/find");
+
         // 멤버 아이디
         Intent intent = getIntent();
         memberId = intent.getStringExtra("memberId");
@@ -63,21 +66,6 @@ public class CommunityActivity extends AppCompatActivity {
         list = (ListView)findViewById(R.id.list_community);
         back = (ImageView)findViewById(R.id.back);
 
-        // 통신 처리
-        new CommunityActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/find");
-
-        // 리스트뷰 처리
-
-        String [] keys = {"title", "author"};
-        int [] ids = {android.R.id.text1, android.R.id.text2};
-        SimpleAdapter adapter = new SimpleAdapter(this, arr, android.R.layout.simple_list_item_2, keys, ids);
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                list.setAdapter(adapter);
-            }
-        });
 
         // 글쓰기 버튼
         insert.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +95,7 @@ public class CommunityActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            System.out.println("list back start");
             try {
 
                 HttpURLConnection con = null;
@@ -150,6 +139,20 @@ public class CommunityActivity extends AppCompatActivity {
 
                         arr.add(map);
                     }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // 리스트뷰 처리
+
+                            System.out.println("list start");
+                            String [] keys = {"title", "author"};
+                            int [] ids = {android.R.id.text1, android.R.id.text2};
+                            SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), arr, android.R.layout.simple_list_item_2, keys, ids);
+                            list.setAdapter(adapter);
+                        }
+                    });
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/holo_green_dark">
+    android:background="#F2F2F2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="회원가입"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30dp"
+            android:fontFamily="@font/font_file"
             android:layout_marginTop="35dp">
 
         </TextView>
@@ -35,10 +36,12 @@
             android:id="@+id/id_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textSize="12sp"
             android:hint="ID"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black">
         </EditText>
 
         <!-- pw 값 -->
@@ -46,10 +49,13 @@
             android:id="@+id/pw_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textSize="12sp"
             android:hint="PW"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:inputType="textPassword"
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black">
         </EditText>
 
         <!-- 닉네임 값 -->
@@ -57,32 +63,35 @@
             android:id="@+id/nickname_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textSize="12sp"
             android:hint="닉네임"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black">
         </EditText>
 
-        <!-- 성별 값 -->
-        <EditText
+        <!-- 성별 스피너 -->
+        <Spinner
             android:id="@+id/sex_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="성별"
-            android:textColorHint="@color/white"
-            android:padding="20dp"
-            android:textColor="@color/white">
-        </EditText>
+            android:padding="10dp"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
 
         <!-- 키 값 -->
         <EditText
             android:id="@+id/height_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textSize="12sp"
             android:hint="키"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:fontFamily="@font/font_file"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:textColor="@color/black">
         </EditText>
 
         <!-- 몸무게 값 -->
@@ -90,10 +99,14 @@
             android:id="@+id/weight_join"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textSize="12sp"
             android:hint="몸무게"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/black"
             android:padding="20dp"
-            android:textColor="@color/white">
+            android:inputType="number"
+            android:digits="0123456789"
+            android:fontFamily="@font/font_file"
+            android:textColor="@color/black">
         </EditText>
 
     </LinearLayout>
@@ -101,18 +114,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_join"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:backgroundTint="#CE93D8"
+            android:fontFamily="@font/font_file"
             android:text="완료"
-            android:textSize="20dp"
-            android:layout_margin="40dp"
-            android:backgroundTint="#210B61">
-        </Button>
+            android:textSize="20dp"></Button>
 
     </LinearLayout>
 

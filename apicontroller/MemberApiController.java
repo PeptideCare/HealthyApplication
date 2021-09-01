@@ -49,9 +49,9 @@ public class MemberApiController {
     public Result find() {
         List<Member> members = memberService.findAll();
         List<MemberDto> list = new ArrayList<>();
-        List<TitleDto> titleDtos = new ArrayList<>();
 
         for (Member member : members) {
+            List<TitleDto> titleDtos = new ArrayList<>();
             List<Title> title = member.getTitle();
             for (Title title1 : title) {
                 TitleDto titleDto = new TitleDto(title1.getId(), title1.getName());
@@ -59,8 +59,12 @@ public class MemberApiController {
             }
 
             Image image = member.getImage();
-            ImageDto imageDto = new ImageDto(image.getId(), image.getName());
-
+            ImageDto imageDto;
+            if (image == null) {
+                imageDto = new ImageDto(Long.valueOf(0), "0");
+            } else {
+                imageDto = new ImageDto(image.getId(), image.getName());
+            }
             MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                     member.getNickname(), member.getHeight(), member.getWeight(),
                     member.getSex(), imageDto, titleDtos);
@@ -83,7 +87,12 @@ public class MemberApiController {
         }
 
         Image image = member.getImage();
-        ImageDto imageDto = new ImageDto(image.getId(), image.getName());
+        ImageDto imageDto;
+        if (image == null) {
+            imageDto = new ImageDto(Long.valueOf(0), "0");
+        } else {
+            imageDto = new ImageDto(image.getId(), image.getName());
+        }
 
         MemberDto memberDto = new MemberDto(member.getId(), member.getPw(),
                 member.getNickname(), member.getHeight(), member.getWeight(),

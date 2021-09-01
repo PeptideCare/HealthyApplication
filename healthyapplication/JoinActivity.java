@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -27,11 +29,10 @@ import java.net.URL;
 
 public class JoinActivity extends AppCompatActivity{
 
-    @NonNull
     EditText id;
     EditText pw;
     EditText nickname;
-    EditText sex;
+    Spinner sex;
     EditText height;
 
     EditText weight;
@@ -52,12 +53,14 @@ public class JoinActivity extends AppCompatActivity{
         id = (EditText) findViewById(R.id.id_join);
         pw = (EditText) findViewById(R.id.pw_join);
         nickname = (EditText) findViewById(R.id.nickname_join);
-        sex = (EditText) findViewById(R.id.sex_join);
+        sex = (Spinner) findViewById(R.id.sex_join);
         height = (EditText) findViewById(R.id.height_join);
         weight = (EditText) findViewById(R.id.weight_join);
         button = (Button) findViewById(R.id.btn_join);
 
-
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.sex, R.layout.spinner);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        sex.setAdapter(adapter);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +95,7 @@ public class JoinActivity extends AppCompatActivity{
                     sToast.setText("회원가입이 완료되었습니다.");
                     sToast.show();
                     Intent intent = new Intent(getApplicationContext(),
-                            MainActivity.class);
+                            LoginActivity.class);
                     startActivity(intent);
                 }
                 else {
@@ -107,7 +110,7 @@ public class JoinActivity extends AppCompatActivity{
         String member_id = id.getText().toString();
         String member_pw = pw.getText().toString();
         String member_nick = nickname.getText().toString();
-        String member_sex = sex.getText().toString();
+        String member_sex = sex.getSelectedItem().toString();
         double member_height = Double.parseDouble(height.getText().toString());
         double member_weight = Double.parseDouble(weight.getText().toString());
 
