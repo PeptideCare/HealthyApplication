@@ -23,4 +23,8 @@ public class Image {
 
     @OneToOne(mappedBy = "image", fetch = FetchType.LAZY)
     private Member member;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

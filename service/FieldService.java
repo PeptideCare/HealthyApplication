@@ -1,6 +1,7 @@
 package com.healthyapplication.healthyapplication.service;
 
 import com.healthyapplication.healthyapplication.domain.Field;
+import com.healthyapplication.healthyapplication.domain.Image;
 import com.healthyapplication.healthyapplication.domain.Member;
 import com.healthyapplication.healthyapplication.domain.Title;
 import com.healthyapplication.healthyapplication.repository.FieldRepository;
@@ -20,6 +21,7 @@ public class FieldService {
     private final FieldRepository fieldRepository;
     private final MemberRepository memberRepository;
     private final TitleService titleService;
+    private final ImageService imageService;
 
     //저장
     @Transactional
@@ -31,14 +33,27 @@ public class FieldService {
             findField.addTime(field.getHour());
             if (findField.getName().equals("공부")) {
                 if (findField.getHour() >= 10000) {
+                    Image image = new Image();
+                    image.setName("대통령");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("공부의 신");
                     titleService.save(title, id);
+
                 } else if (findField.getHour() >= 1000) {
+                    Image image = new Image();
+                    image.setName("국회의원");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("공부는 나의길");
                     titleService.save(title, id);
                 } else if (findField.getHour() >= 100) {
+                    Image image = new Image();
+                    image.setName("공무원");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("공부 꿈나무");
                     titleService.save(title, id);
@@ -47,14 +62,26 @@ public class FieldService {
 
             if (findField.getName().equals("운동")) {
                 if (findField.getHour() >= 10000) {
+                    Image image = new Image();
+                    image.setName("보디빌더");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("운동의 신");
                     titleService.save(title, id);
                 } else if (findField.getHour() >= 1000) {
+                    Image image = new Image();
+                    image.setName("스포츠 모델");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("운동은 나의길");
                     titleService.save(title, id);
                 } else if (findField.getHour() >= 100) {
+                    Image image = new Image();
+                    image.setName("몸짱");
+                    imageService.update(image, id);
+
                     Title title = new Title();
                     title.setName("운동 꿈나무");
                     titleService.save(title, id);

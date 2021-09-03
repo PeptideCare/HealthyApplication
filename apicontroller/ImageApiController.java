@@ -17,11 +17,11 @@ public class ImageApiController {
         imageService.save(image);
     }
 
-    // 회원에 저장
-    @PostMapping("/api/image/{member_id}/{image_id}/insert")
-    public void save(@PathVariable Long image_id, @PathVariable String member_id){
-        imageService.update(image_id, member_id);
-    }
+//    // 회원에 저장
+//    @PostMapping("/api/image/{member_id}/{image_name}/insert")
+//    public void save(@PathVariable String image_name, @PathVariable String member_id){
+//        imageService.update(image_name, member_id);
+//    }
 
 
 }

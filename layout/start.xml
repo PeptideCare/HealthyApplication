@@ -87,8 +87,9 @@
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_margin="50dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
             android:backgroundTint="#80CBC4"
             android:fontFamily="@font/font_file"
             android:text="완료"

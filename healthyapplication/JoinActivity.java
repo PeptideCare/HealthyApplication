@@ -66,26 +66,26 @@ public class JoinActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-//                // 유효성 검사
-//                if (id.getText().toString().length() <= 1) {
-//                    sToast.setText("2글자 이상의 아이디를 입력해주세요.");
-//                    sToast.show();
-//                } else if (pw.getText().toString().length() <= 2) {
-//                    sToast.setText("2글자 이상의 비밀번호를 입력해주세요.");
-//                    sToast.show();
-//                } else if (nickname.getText().toString().length() <= 2) {
-//                    sToast.setText("2글자 이상의 닉네임을 입력해주세요.");
-//                    sToast.show();
-//                } else if (sex.getText().toString().length() == 0) {
-//                    sToast.setText("성별을 입력해주세요.");
-//                    sToast.show();
-//                } else if (height.getText().toString().length() <= 1) {
-//                    sToast.setText("키를 입력해주세요.");
-//                    sToast.show();
-//                } else if (weight.getText().toString().length() <= 1) {
-//                    sToast.setText("몸무게를 입력해주세요.");
-//                    sToast.show();
-//                }
+                // 유효성 검사
+                if (id.getText().toString().equals("")) {
+                    sToast.setText("2글자 이상의 아이디를 입력해주세요.");
+                    sToast.show();
+                } else if (pw.getText().toString().length() <= 2) {
+                    sToast.setText("2글자 이상의 비밀번호를 입력해주세요.");
+                    sToast.show();
+                } else if (nickname.getText().toString().length() <= 2) {
+                    sToast.setText("2글자 이상의 닉네임을 입력해주세요.");
+                    sToast.show();
+                } else if (sex.getSelectedItem().toString().length() == 0) {
+                    sToast.setText("성별을 입력해주세요.");
+                    sToast.show();
+                } else if (height.getText().toString().length() <= 1) {
+                    sToast.setText("키를 입력해주세요.");
+                    sToast.show();
+                } else if (weight.getText().toString().length() <= 1) {
+                    sToast.setText("몸무게를 입력해주세요.");
+                    sToast.show();
+                }
 
                 // 통신 처리
                 new JSONTask().execute("http://192.168.35.53:8080/api/member/insert");

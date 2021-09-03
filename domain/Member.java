@@ -61,4 +61,5 @@ public class Member {
     public void updateImage(Image image) {
         this.image = image;
     }
+
 }

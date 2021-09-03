@@ -148,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
                                 title.setText(titleName);
 //                        img.setImageResource(R.drawable.);
                                 if (imgName.equals("0")) {
-                                    name.setText("");
+                                    name.setText("평범한 사람");
                                 }
                                 if (titleName == null) {
-                                    title.setText("");
+                                    title.setText("평범함");
                                 }
                             }
                         });

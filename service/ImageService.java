@@ -45,11 +45,10 @@ public class ImageService {
 
     // 회원 이미지 변경
     @Transactional
-    public void update (Long image_id, String member_id) {
+    public void update (Image image, String member_id) {
         Member member = memberRepository.findById(member_id).get();
-        Optional<Image> image = imageRepository.findById(image_id);
-        if (!image.isEmpty()) {
-            member.updateImage(image.get());
-        }
+        Image savedImage = imageRepository.save(image);
+        member.updateImage(savedImage);
+
     }
 }
