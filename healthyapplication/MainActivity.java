@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         img = (ImageView)findViewById(R.id.image);
 
         // 통신 처리
-        new MainActivity.JSONTask().execute("http://192.168.35.53:8080/api/member/"+memberId+"/find");
+        new MainActivity.JSONTask().execute("http://192.168.35.188:8080/api/member/"+memberId+"/find");
 
         // 게시판 이동
         list.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 name.setText(imgName);
                                 title.setText(titleName);
-//                        img.setImageResource(R.drawable.);
+                                Glide.with(getApplicationContext()).load(R.raw.man).into(img);
                                 if (imgName.equals("0")) {
                                     name.setText("평범한 사람");
                                 }

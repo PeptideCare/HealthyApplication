@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // 통신 처리
-                new LoginActivity.JSONTask().execute("http://192.168.35.53:8080/api/member/login");
+                new LoginActivity.JSONTask().execute("http://192.168.35.188:8080/api/member/login");
 
                 if (findMemberId.equals("0")) {
                     sToast.setText("회원정보가 일치하지 않습니다.");

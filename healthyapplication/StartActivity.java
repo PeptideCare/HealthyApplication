@@ -77,7 +77,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // 통신 처리
-                new StartActivity.JSONTask().execute("http://192.168.35.53:8080/api/diary/"+memberId+"/insert");
+                new StartActivity.JSONTask().execute("http://192.168.35.188:8080/api/diary/"+memberId+"/insert");
 
                 sToast.setText("작성이 완료되었습니다.");
                 sToast.show();

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F2F2F2">
+    android:background="@color/black">
 
     <!-- 타이틀 -->
     <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
             android:text="게시판"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp">
 
         </TextView>
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
-            android:backgroundTint="#B2DFDB"
+            android:backgroundTint="#B40404"
             android:clickable="true"
             app:srcCompat="@android:drawable/ic_menu_add"
             android:layout_alignParentBottom="true"/>

@@ -88,7 +88,7 @@ public class JoinActivity extends AppCompatActivity{
                 }
 
                 // 통신 처리
-                new JSONTask().execute("http://192.168.35.53:8080/api/member/insert");
+                new JSONTask().execute("http://192.168.35.188:8080/api/member/insert");
 
                 // 회원 중복 검사
                 if (!savedMemberId.equals("0")) {

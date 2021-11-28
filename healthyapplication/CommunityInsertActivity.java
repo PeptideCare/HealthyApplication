@@ -51,7 +51,7 @@ public class CommunityInsertActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                new CommunityInsertActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/"+memberId+"/insert");
+                new CommunityInsertActivity.JSONTask().execute("http://192.168.35.188:8080/api/community/"+memberId+"/insert");
 
                 Intent intent = new Intent(getApplicationContext(),
                         CommunityActivity.class);

@@ -75,7 +75,7 @@ public class DiaryActivity extends AppCompatActivity {
                 day = year + "-" + String.format("%02d",(month+1)) + "-" + String.format("%02d",(dayofMonth));
 
                 // 통신 처리
-                new DiaryActivity.JSONTask().execute("http://192.168.35.53:8080/api/diary/"+memberId+"/"+day+"/find");
+                new DiaryActivity.JSONTask().execute("http://192.168.35.188:8080/api/diary/"+memberId+"/"+day+"/find");
 
             }
         });

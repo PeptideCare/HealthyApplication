@@ -4,13 +4,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -56,7 +60,7 @@ public class CommunityActivity extends AppCompatActivity {
         actionBar.hide();
 
         // 통신 처리
-        new CommunityActivity.JSONTask().execute("http://192.168.35.53:8080/api/community/find");
+        new CommunityActivity.JSONTask().execute("http://192.168.35.188:8080/api/community/find");
 
         // 멤버 아이디
         Intent intent = getIntent();
@@ -149,7 +153,21 @@ public class CommunityActivity extends AppCompatActivity {
                             System.out.println("list start");
                             String [] keys = {"title", "author"};
                             int [] ids = {android.R.id.text1, android.R.id.text2};
-                            SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), arr, android.R.layout.simple_list_item_2, keys, ids);
+                            SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), arr, android.R.layout.simple_list_item_2, keys, ids) {
+                                @Override
+                                public View getView(int position, View convertView, ViewGroup parent) {
+
+                                    View view = super.getView(position, convertView, parent);
+                                    TextView author = (TextView)view.findViewById(android.R.id.text1);
+                                    TextView text = (TextView)view.findViewById(android.R.id.text2);
+
+                                    author.setTextColor(Color.WHITE);
+                                    text.setTextColor(Color.WHITE);
+
+                                    return view;
+                                }
+                            };
+
                             list.setAdapter(adapter);
                         }
                     });
