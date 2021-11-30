@@ -1,7 +1,6 @@
 package com.healthyapplication.healthyapplication.apicontroller;
 
 import com.healthyapplication.healthyapplication.domain.Community;
-import com.healthyapplication.healthyapplication.domain.Image;
 import com.healthyapplication.healthyapplication.domain.Title;
 import com.healthyapplication.healthyapplication.service.CommunityService;
 import lombok.AllArgsConstructor;
@@ -42,9 +41,9 @@ public class CommunityApiController {
                 titleDtos.add(titleDto);
             }
 
-            ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
+//            ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
 
-            MemberDto memberDto = new MemberDto(community.getMember().getNickname(), imageDto, titleDtos);
+            MemberDto memberDto = new MemberDto(community.getMember().getNickname(), titleDtos);
             ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
 
             list.add(comDto);
@@ -64,9 +63,9 @@ public class CommunityApiController {
             titleDtos.add(titleDto);
         }
 
-        ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
+//        ImageDto imageDto = new ImageDto(community.getMember().getImage().getId(), community.getMember().getImage().getName());
 
-        MemberDto memberDto = new MemberDto(community.getMember().getNickname(), imageDto, titleDtos);
+        MemberDto memberDto = new MemberDto(community.getMember().getNickname(), titleDtos);
         ComDto comDto = new ComDto(community.getId(), community.getTitle(), community.getContent(), community.getDate(), memberDto);
 
         return comDto;
@@ -88,7 +87,7 @@ public class CommunityApiController {
     @AllArgsConstructor
     static class MemberDto {
         private String nickname;
-        private ImageDto image;
+//        private ImageDto image;
         private List<TitleDto> titles;
     }
 
