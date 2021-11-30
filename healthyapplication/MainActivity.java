@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     String imgName;
     Long titleId;
     String titleName = "";
+    String sex;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,17 +144,56 @@ public class MainActivity extends AppCompatActivity {
                             titleName = obj.getString("name");
                         }
 
+                        // 회원 성별 추출
+                        sex = jsonObject.getString("sex");
+
+                        // UI 변경
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                name.setText(imgName);
-                                title.setText(titleName);
-                                Glide.with(getApplicationContext()).load(R.raw.man).into(img);
-                                if (imgName.equals("0")) {
-                                    name.setText("평범한 사람");
-                                }
-                                if (titleName == null) {
+
+//                                // 기본 세팅
+//                                if (imgName.equals("0")) {
+//                                    if (sex.equals("남")) {
+//                                        name.setText("평범한 남자");
+//                                        Glide.with(getApplicationContext()).load(R.raw.normal_man).into(img);
+//                                    } else {
+//                                        name.setText("평범한 여자");
+//                                        Glide.with(getApplicationContext()).load(R.raw.normal_woman).into(img);
+//                                    }
+//                                }
+
+                                // 필드값 별로 세팅
+                                    name.setText(imgName);
+                                    if (sex.equals("남")) {
+                                        if (imgName.equals("보디빌더")) {
+                                            Glide.with(getApplicationContext()).load(R.raw.body_man).into(img);
+                                        } else if (imgName.equals("트레이너")){
+                                            Glide.with(getApplicationContext()).load(R.raw.trainer_man).into(img);
+                                        } else if (imgName.equals("모델")) {
+                                            Glide.with(getApplicationContext()).load(R.raw.model_man).into(img);
+                                        } else {
+                                            name.setText("평범한 남자");
+                                            Glide.with(getApplicationContext()).load(R.raw.normal_man).into(img);
+                                        }
+                                    } else {
+                                        if (imgName.equals("보디빌더")) {
+                                            Glide.with(getApplicationContext()).load(R.raw.body_woman).into(img);
+                                        } else if (imgName.equals("트레이너")){
+                                            Glide.with(getApplicationContext()).load(R.raw.trainer_woman).into(img);
+                                        } else if (imgName.equals("모델")) {
+                                            Glide.with(getApplicationContext()).load(R.raw.model_woman).into(img);
+                                        } else {
+                                            name.setText("평범한 여자");
+                                            Glide.with(getApplicationContext()).load(R.raw.normal_woman).into(img);
+                                        }
+                                    }
+
+                                // 칭호 세팅
+                                if (titleName.length() == 0) {
                                     title.setText("평범함");
+                                } else {
+                                    title.setText(titleName);
                                 }
                             }
                         });
